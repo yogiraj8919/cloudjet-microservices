@@ -1,5 +1,7 @@
 package com.cloudjet.dbservice.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,8 @@ public class DatabaseInstance {
     private String region;
     private String plan;
     private String status;
+
+    private LocalDateTime createdAt;
 
     public Long getId() {
         return id;
@@ -61,5 +65,13 @@ public class DatabaseInstance {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt(){
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt = createdAt;
     }
 }
