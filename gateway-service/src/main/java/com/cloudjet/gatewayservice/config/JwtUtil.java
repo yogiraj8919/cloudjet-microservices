@@ -42,4 +42,13 @@ public class JwtUtil {
 
         return claims.getSubject();
     }
+
+    public String extractRole(String token) {
+        return Jwts.parserBuilder()
+            .setSigningKey(getKey())
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .get("role", String.class);
+    }   
 }

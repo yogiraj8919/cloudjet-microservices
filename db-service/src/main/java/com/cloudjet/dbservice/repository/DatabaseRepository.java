@@ -6,4 +6,5 @@ import java.util.*;
 
 public interface DatabaseRepository extends JpaRepository<DatabaseInstance, Long> {
     List<DatabaseInstance> findByStatus(String status);
+    List<DatabaseInstance> findByOwnerEmail(String ownerEmail);
 }

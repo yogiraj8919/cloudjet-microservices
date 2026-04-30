@@ -3,7 +3,6 @@ package com.cloudjet.dbservice.dto;
 public class CreateDatabaseRequest {
 
     private String dbName;
-    private String ownerEmail;
     private String region;
     private String plan;
 
@@ -13,14 +12,6 @@ public class CreateDatabaseRequest {
 
     public void setDbName(String dbName) {
         this.dbName = dbName;
-    }
-
-    public String getOwnerEmail() {
-        return ownerEmail;
-    }
-
-    public void setOwnerEmail(String ownerEmail) {
-        this.ownerEmail = ownerEmail;
     }
 
     public String getRegion() {

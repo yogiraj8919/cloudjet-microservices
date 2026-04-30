@@ -20,15 +20,19 @@ public class JwtService {
     private long expiration;
 
     
-    public String generateToken(String email){
-        return Jwts.builder().setSubject(email).setIssuedAt(new Date()).
-                setExpiration(new Date(System.currentTimeMillis()+expiration)).signWith(Keys.hmacShaKeyFor(secret.getBytes()))
-                .compact();
+    public String generateToken(String email,String role){
+        return Jwts.builder()
+            .setSubject(email)
+            .claim("role", role)
+            .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+            .compact();
     }
 
     public String extractEmail(String token){
         return Jwts.parserBuilder().setSigningKey(secret.getBytes()).build()
-                .parseClaimsJws(token).getBody().getSubject();
+            .parseClaimsJws(token)
+            .getBody()
+            .get("role", String.class);
     }
 
     

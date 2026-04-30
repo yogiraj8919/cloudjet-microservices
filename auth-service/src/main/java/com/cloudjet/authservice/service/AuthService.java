@@ -44,7 +44,7 @@ public class AuthService {
         if(!bCryptPasswordEncoder.matches(request.getPassword(),user.getPassword())){
             throw new RuntimeException("Invaild password");
         }
-        String token = jwtService.generateToken(user.getEmail());
+        String token = jwtService.generateToken(user.getEmail(), user.getRole());
         
         return Map.of("token",token);
     }

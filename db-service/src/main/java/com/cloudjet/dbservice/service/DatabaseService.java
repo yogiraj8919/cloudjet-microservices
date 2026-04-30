@@ -19,11 +19,11 @@ public class DatabaseService {
         this.repository = repository;
     }
 
-    public String create(CreateDatabaseRequest request){
+    public String create(CreateDatabaseRequest request, String email){
         DatabaseInstance db = new DatabaseInstance();
 
         db.setDbName(request.getDbName());
-        db.setOwnerEmail(request.getOwnerEmail());
+        db.setOwnerEmail(email);
         db.setRegion(request.getRegion());
         db.setPlan(request.getPlan());
         db.setStatus("CREATING");
@@ -34,14 +34,13 @@ public class DatabaseService {
         return "Database provisioning started";
     }
 
-    public List<DatabaseResponse> getAll(){
-        List<DatabaseInstance> list = repository.findAll();
-        List<DatabaseResponse> responseList = new ArrayList<>();
+    public List<DatabaseInstance> getUserDatabases(String email,String role) {
 
-        for(DatabaseInstance db: list){
-            responseList.add(mapToResponse(db));
+        if("ADMIN".equals(role)){
+            return repository.findAll();
         }
-        return responseList;
+        
+        return repository.findByOwnerEmail(email);
     }
 
     public DatabaseResponse getById(Long id) {
