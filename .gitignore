@@ -1,0 +1,32 @@
+# ======================
+# GLOBAL (ROOT LEVEL)
+# ======================
+
+# Env (SECRETS)
+.env
+.env.*
+!.env.example
+
+# Maven
+target/
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Build
+out/
+build/
+
+# Temp
+*.swp

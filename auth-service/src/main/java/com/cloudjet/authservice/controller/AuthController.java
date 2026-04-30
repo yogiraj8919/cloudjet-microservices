@@ -22,6 +22,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request){
+         System.out.println("AUTH SERVICE HIT ✅");
         return ResponseEntity.ok(authService.register(request));
     }
 
