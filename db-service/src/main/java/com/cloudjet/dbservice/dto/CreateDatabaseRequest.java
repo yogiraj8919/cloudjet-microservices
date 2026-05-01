@@ -1,7 +1,11 @@
 package com.cloudjet.dbservice.dto;
 
+import jakarta.persistence.Column;
+
 public class CreateDatabaseRequest {
 
+
+   
     private String dbName;
     private String region;
     private String plan;

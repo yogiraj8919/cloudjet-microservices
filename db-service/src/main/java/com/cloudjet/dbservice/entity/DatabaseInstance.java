@@ -15,6 +15,8 @@ public class DatabaseInstance {
     private String ownerEmail;
     private String region;
     private String plan;
+
+    @Column(name = "status")
     private String status;
 
     private LocalDateTime createdAt;

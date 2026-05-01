@@ -2,9 +2,13 @@ package com.cloudjet.dbservice.dto;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+
 public class DatabaseResponse {
 
     private Long id;
+    
+    @Column(nullable = false,unique = true)
     private String dbName;
     private String ownerEmail;
     private String region;
