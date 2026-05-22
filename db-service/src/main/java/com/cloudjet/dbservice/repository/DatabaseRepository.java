@@ -8,4 +8,5 @@ public interface DatabaseRepository extends JpaRepository<DatabaseInstance, Long
     List<DatabaseInstance> findByStatus(String status);
     List<DatabaseInstance> findByOwnerEmail(String ownerEmail);
     Optional<DatabaseInstance> findByIdAndOwnerEmail(Long id, String email);
+    boolean existsByServerName(String serverName);
 }

@@ -2,111 +2,106 @@ package com.cloudjet.dbservice.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-
 public class DatabaseResponse {
 
     private Long id;
-    
-    @Column(nullable = false,unique = true)
+
+    private String serverName;
+
     private String dbName;
+
     private String ownerEmail;
+
     private String region;
+
     private String plan;
+
     private String status;
+
+    private String engineVersion;
+
     private LocalDateTime createdAt;
 
     private String endpoint;
-    private int port;
 
-    public DatabaseResponse() {
-    }
+    private Integer port;
 
-    public DatabaseResponse(Long id, String dbName, String ownerEmail,
-                            String region, String plan, String status,
-                            LocalDateTime createdAt,
-                            String endpoint, int port) {
+    private String username;
+
+    public DatabaseResponse(
+            Long id,
+            String serverName,
+            String dbName,
+            String ownerEmail,
+            String region,
+            String plan,
+            String status,
+            String engineVersion,
+            LocalDateTime createdAt,
+            String endpoint,
+            Integer port,
+            String username
+    ) {
 
         this.id = id;
+        this.serverName = serverName;
         this.dbName = dbName;
         this.ownerEmail = ownerEmail;
         this.region = region;
         this.plan = plan;
         this.status = status;
+        this.engineVersion = engineVersion;
         this.createdAt = createdAt;
         this.endpoint = endpoint;
         this.port = port;
+        this.username = username;
     }
 
     public Long getId() {
-    return id;
-}
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public String getServerName() {
+        return serverName;
+    }
 
-        public String getDbName() {
-            return dbName;
-        }
+    public String getDbName() {
+        return dbName;
+    }
 
-        public void setDbName(String dbName) {
-            this.dbName = dbName;
-        }
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
 
-        public String getOwnerEmail() {
-            return ownerEmail;
-        }
+    public String getRegion() {
+        return region;
+    }
 
-        public void setOwnerEmail(String ownerEmail) {
-            this.ownerEmail = ownerEmail;
-        }
+    public String getPlan() {
+        return plan;
+    }
 
-        public String getRegion() {
-            return region;
-        }
+    public String getStatus() {
+        return status;
+    }
 
-        public void setRegion(String region) {
-            this.region = region;
-        }
+    public String getEngineVersion() {
+        return engineVersion;
+    }
 
-        public String getPlan() {
-            return plan;
-        }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-        public void setPlan(String plan) {
-            this.plan = plan;
-        }
+    public String getEndpoint() {
+        return endpoint;
+    }
 
-        public String getStatus() {
-            return status;
-        }
+    public Integer getPort() {
+        return port;
+    }
 
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public LocalDateTime getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public String getEndpoint() {
-            return endpoint;
-        }
-
-        public void setEndpoint(String endpoint) {
-            this.endpoint = endpoint;
-        }
-
-        public int getPort() {
-            return port;
-        }
-
-        public void setPort(int port) {
-            this.port = port;
-}
+    public String getUsername() {
+        return username;
+    }
 }

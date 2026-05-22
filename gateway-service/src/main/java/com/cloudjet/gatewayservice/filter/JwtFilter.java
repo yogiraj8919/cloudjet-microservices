@@ -26,8 +26,7 @@ public class JwtFilter extends AbstractGatewayFilterFactory<JwtFilter.Config> {
     public GatewayFilter apply(Config config) {
 
         return (exchange, chain) -> {
-
-            if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+            if (exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION) == null) {
                 exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                 return exchange.getResponse().setComplete();
             }
@@ -36,7 +35,7 @@ public class JwtFilter extends AbstractGatewayFilterFactory<JwtFilter.Config> {
                     exchange.getRequest()
                             .getHeaders()
                             .getFirst(HttpHeaders.AUTHORIZATION);
-
+ 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                 return exchange.getResponse().setComplete();
