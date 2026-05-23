@@ -11,11 +11,18 @@ public class RabbitMQConfig {
 
     public static final String PROVISION_QUEUE =
             "db.provision.queue";
+    
+    public static final String DELETE_QUEUE =
+            "db.delete.queue";
 
     @Bean
     public Queue provisionQueue() {
-
         return new Queue(PROVISION_QUEUE, true);
+    }
+
+    @Bean
+    public Queue deletQueue(){
+        return new Queue(DELETE_QUEUE, true);
     }
 
     @Bean

@@ -1,6 +1,5 @@
 package com.cloudjet.dbservice.dto;
 
-import java.io.Serializable;
 
 public class ProvisionRequest{
     private Long dbId;

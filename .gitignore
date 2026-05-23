@@ -28,5 +28,7 @@ target/
 out/
 build/
 
+.vscode
+
 # Temp
 *.swp

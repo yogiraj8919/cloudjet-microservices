@@ -91,9 +91,30 @@ public class PostgresProvisioner implements DatabaseProvisioner{
             repository.save(db);
         }
     }
+
+
     @Override
     public void delete(DatabaseInstance db) {
-        // later
+        try{
+            String command = String.format("docker rm -f %s", db.getServerName());
+            log.info("Executing delete command: {}",command);
+            ProcessBuilder pb =
+                new ProcessBuilder(
+                        "/bin/sh",
+                        "-c",
+                        command
+                );
+            Process process = pb.start();
+            int exitCode = process.waitFor();
+            
+            if(exitCode != 0){
+                throw new RuntimeException("Container deletion failed");
+            }
+        }catch (Exception e){
+
+            throw new RuntimeException("Delete failed: " + e.getMessage());
+
+        }
     }
 
     private int generatePort() {

@@ -19,10 +19,12 @@ public class DatabaseService {
 
     private final DatabaseRepository repository;
     private final ProvisionPublisher provisionPublisher;
+    private final DeletePublisher deletePublisher;
 
-    public DatabaseService(DatabaseRepository repository, ProvisionPublisher provisionPublisher) {
+    public DatabaseService(DatabaseRepository repository, ProvisionPublisher provisionPublisher,DeletePublisher deletePublisher) {
         this.repository = repository;
         this.provisionPublisher = provisionPublisher;
+        this.deletePublisher = deletePublisher;
     }
 
     public DatabaseResponse create(CreateDatabaseRequest request, String email){
@@ -65,6 +67,25 @@ public class DatabaseService {
 
         return mapToResponse(savedDb);
     }
+
+    public void delete(Long id, String email, String role){
+        DatabaseInstance db;
+
+        if("ADMIN".equalsIgnoreCase(role)){
+            db = repository.findById(id).orElseThrow(() -> new RuntimeException("DB not found"));
+        }else {
+            db = repository.findByIdAndOwnerEmail(id, email).orElseThrow(() -> new RuntimeException("DB not found or Access denied"));
+        }
+
+        // Mark the DB as DELETING, persist the change and publish a delete request
+        db.setStatus("DELETING");
+        repository.save(db);
+
+        deletePublisher.publishDeleteRequest(db.getId());
+        log.info("Delete event published for DB {}", db.getId());
+    }
+
+
 
     public List<DatabaseResponse> getUserDatabases(String email,String role) {
         log.info("Fetching databases for user {} with role {}", email, role);
