@@ -81,7 +81,7 @@ public class DatabaseService {
         db.setStatus("DELETING");
         repository.save(db);
 
-        deletePublisher.publishDeleteRequest(db.getId());
+        deletePublisher.publishDeleteRequest(id);
         log.info("Delete event published for DB {}", db.getId());
     }
 
